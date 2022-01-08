@@ -7,9 +7,9 @@
 setup(key = "[Your Key]", .Renviron_path = ".Renviron")
 }
 \arguments{
-\item{key}{Your key. See \href{https://www.rescuetime.com/anapi/manage}{API Key Management}}
+\item{key}{\code{(character)} Your key. See \href{https://www.rescuetime.com/anapi/manage}{API Key Management}}
 
-\item{.Renviron_path}{Path to the \emph{.Renviron} file to modify. Defaults to current directory. If one does not exist it will be created.}
+\item{\code{(character)}}{.Renviron_path Path to the \emph{.Renviron} file to modify. Defaults to current directory. If one does not exist it will be created.}
 }
 \value{
 Messages or warnings as is suitable
