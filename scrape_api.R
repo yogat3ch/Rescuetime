@@ -41,7 +41,7 @@ split_args <- function(x) {
   out
 }
 do_params <- function(x) split_args(subset(x, names(x) != "key"))
-purrr::imap(params, ~{
+fns <- purrr::imap(params, ~{
 
 
   r_params <- do_params(.x$key_params$`Required parameters`)
@@ -56,5 +56,21 @@ purrr::imap(params, ~{
   rlang::new_function(rlang::pairlist2(!!!r_params,
                                        !!!q_params,
                                        !!!o_params,
-                                       key = rlang::expr(key())), body = rlang::expr())
+                                       key = rlang::expr(get_key())), body = rlang::expr({
+                                         .e <- environment()
+                                         .fmls <- rlang::fn_fmls()
+                                         params <- rlang::env_get_list(.e, nms = rlang::fn_fmls_names()) |>
+                                           purrr::imap(arg_match, .fmls = .fmls)
+
+                                         call_type <- match.call()[[1]]
+                                         req <- q_fn(call_type)(make_url(urls[[call_type]], query = params))
+                                         pretty_content(req)
+                                       }))
+})
+e <- new.env()
+list2env(fns, e)
+dump(names(fns), "R/e2.R", envir = e)
+params$`Documentation for the Analytic Data API`$query_parameters |> purrr::pmap(~{
+  .x <- list(...)
+  paste0("' @param ", .x$`Principle name`, " ", .x$Description)
 })
