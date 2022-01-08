@@ -1,1 +1,2 @@
-Rescuetime
+# Rescuetime
+## Setup

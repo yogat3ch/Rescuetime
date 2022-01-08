@@ -1,10 +1,12 @@
 Package: Rescuetime
 Title: A minimialist R interface to the Rescuetime API
 Version: 0.0.1
-Authors@R: 
-    person("Stephen", "Holsenbeck", , "sholsen@alumni.emory.edu", role = c("aut", "cre"))
-Description: This package provides functions for interfacing with the Rescuetime API.
-Imports: httr
+Authors@R: person("Stephen", "Holsenbeck", ,
+       "sholsen@alumni.emory.edu", role = c("aut", "cre"))
+Description: This package provides functions for interfacing with
+       the Rescuetime API.
+Imports: glue, httr, lubridate, purrr, rlang, stringr, UU
+Remotes: yogat3ch/UU
 License: AGPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
