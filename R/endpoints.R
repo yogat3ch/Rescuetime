@@ -71,7 +71,7 @@ daily_summary <- function (key = get_key()) {
   .fmls <- rlang::fn_fmls()
   query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                         arg_match, .fmls = .fmls, env = .e)
-  call_type <- match.call()[[1]]
+  call_type <- tail(as.character(match.call()[[1]]), 1)
   req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
   pretty_content(req)
 }
@@ -88,7 +88,7 @@ alerts <-
     .fmls <- rlang::fn_fmls()
     query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                           arg_match, .fmls = .fmls)
-    call_type <- match.call()[[1]]
+    call_type <- tail(as.character(match.call()[[1]]), 1)
     req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
     pretty_content(req)
   }
@@ -105,7 +105,7 @@ highlights <-
     .fmls <- rlang::fn_fmls()
     query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                           arg_match, .fmls = .fmls)
-    call_type <- match.call()[[1]]
+    call_type <- tail(as.character(match.call()[[1]]), 1)
     req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
     pretty_content(req)
   }
@@ -122,7 +122,7 @@ highlights_post <-
     .fmls <- rlang::fn_fmls()
     query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                           arg_match, .fmls = .fmls)
-    call_type <- match.call()[[1]]
+    call_type <- tail(as.character(match.call()[[1]]), 1)
     req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
     pretty_content(req)
   }
@@ -137,7 +137,7 @@ start_focustime <- function (key = get_key())
   .fmls <- rlang::fn_fmls()
   query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                         arg_match, .fmls = .fmls)
-  call_type <- match.call()[[1]]
+  call_type <- tail(as.character(match.call()[[1]]), 1)
   req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
   pretty_content(req)
 }
@@ -151,7 +151,7 @@ end_focustime <- function (key = get_key())
   .fmls <- rlang::fn_fmls()
   query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                         arg_match, .fmls = .fmls)
-  call_type <- match.call()[[1]]
+  call_type <- tail(as.character(match.call()[[1]]), 1)
   req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
   pretty_content(req)
 }
@@ -166,7 +166,7 @@ focustime_started <- function (key = get_key())
   .fmls <- rlang::fn_fmls()
   query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                         arg_match, .fmls = .fmls)
-  call_type <- match.call()[[1]]
+  call_type <- tail(as.character(match.call()[[1]]), 1)
   req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
   pretty_content(req)
 }
@@ -181,7 +181,7 @@ focustime_ended <- function (key = get_key())
   .fmls <- rlang::fn_fmls()
   query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                         arg_match, .fmls = .fmls)
-  call_type <- match.call()[[1]]
+  call_type <- tail(as.character(match.call()[[1]]), 1)
   req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
   pretty_content(req)
 }
@@ -206,7 +206,7 @@ offline <- function (key = get_key(),
   .fmls <- rlang::fn_fmls()
   query <-purrr::imap(rlang::env_get_list(.e, nms = rlang::fn_fmls_names()),
                         arg_match, .fmls = .fmls)
-  call_type <- match.call()[[1]]
+  call_type <- tail(as.character(match.call()[[1]]), 1)
   body_params <- list(start_time = start_time, end_time = end_time, activity_name = activity_name, activity_details = activity_details)
   req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = list(key = key)), body = body_params, encode = "json")
   pretty_content(req)
