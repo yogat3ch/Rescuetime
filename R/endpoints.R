@@ -55,7 +55,7 @@ analytic <-
         if (is.character(.x)) rlang::exec(UU::match_letters,.x[[1]], !!!eval(.fmls[[.y]], envir = .e), n = 2) else .x
       })
 
-    call_type <- match.call()[[1]]
+    call_type <- tail(as.character(match.call()[[1]]), 1)
     req <- q_fn(call_type)(httr::modify_url(urls[[call_type]], query = query))
     pretty_content(req)
   }
