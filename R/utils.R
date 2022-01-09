@@ -34,7 +34,7 @@ q_fn <- function(x) switch(as.character(x), daily_summary = ,
                offline = httr::POST)
 
 arg_match <- function(.x, .y, .fmls, env = rlang::caller_env()) {
-  if (is.character(.x))
+  if (is.character(.x) && .y != "key")
     rlang::exec(UU::match_letters,.x[[1]], !!!eval(.fmls[[.y]], envir = env), n = 2)
   else
     .x
