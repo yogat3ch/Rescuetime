@@ -22,7 +22,7 @@ urls <- c(daily_summary = "daily_summary_feed",
     .url <- httr::modify_url(url_api, path = c(.url$path, .x))
   })
 
-q_fn <- function(x) switch(tail(as.character(call_type), 1), daily_summary = ,
+q_fn <- function(x) switch(tail(as.character(x), 1), daily_summary = ,
                analytic = ,
                alerts = ,
                highlights = ,
